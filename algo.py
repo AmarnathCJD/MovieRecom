@@ -105,8 +105,9 @@ class User:
 
     def fetch_series_bulk(self):
         import concurrent.futures
+        common_cluster = []
 
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10 if len(self.series_list) > 10 else len(self.series_list)) as executor:
             futures = []
             for series in self.series_list:
                 futures.append(executor.submit(get_similar_series, series["id"], series["type"]))
@@ -114,10 +115,17 @@ class User:
             for future in concurrent.futures.as_completed(futures):
                 series_list = future.result()
                 for series in series_list:
+                    if series not in common_cluster:
+                        common_cluster.append([series, 1])
+                    else:
+                        common_cluster[common_cluster.index(series)][1] += 1
+
                     self.add_series(series)
+        
+        common_cluster = sorted(common_cluster, key=lambda k: k[1], reverse=True)
+        print(common_cluster[:5])
 
     def fetch_series(self):
-        # Fetch series from internet
         pass
 
 
@@ -134,13 +142,11 @@ def ask_reccomendation(user):
         else:
             print("No series found with name {}".format(series))
     user.fetch_series_bulk()
-    #return user.get_recommendations()
 
 
 u = User(1)
 ask_reccomendation(u)
 
-#print(u.get_recommendations())
 a = time.time()
 print("Fetching series/movies and their recommendations...")
 u.fetch_series_bulk()
