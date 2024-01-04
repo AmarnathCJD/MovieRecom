@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<head>
+    <title>MovieRecc</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="bg-gray-900 p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="#" class="text-green-500 text-2xl font-bold">MovieRecc</a>
+                <div class="hidden md:flex" id="menu-x">
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Home
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        Movies
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Genres
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        About
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-green-500 focus:outline-none" id="mobile-menu-button">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Home
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        Movies
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Genres
+                    </a>
+                    <a href="#"
+                        class="text-gray-300 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium flex items-center">
+                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        About
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-form form flex justify-center items-center pt-4 ml-2 mr-2">
+        <div class="w-1/2 flex justify-center items-center">
+            <label>
+                <span class="screen-reader-text">Search for TV, Movies, Celebrities and more</span>
+                <input type="search" class="search-field" placeholder="Search for TV, Movies, Celebrities and more"
+                    value="" name="s" title="Search for TV, Movies, Celebrities and more" autocomplete="on"
+                    id="search-input">
+            </label>
+            <button type="submit"
+                class="search-submit button bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xs"
+                id="search-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg></button>
+        </div>
+    </div>
+
+    <div class="search-form form flex justify-center items-center pt-4 ml-2 mr-2 hidden" id="search-results">
+        <div class="grid gap-4 grid-cols-6" id="grid">
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</body>

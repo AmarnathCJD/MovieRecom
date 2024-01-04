@@ -1,4 +1,4 @@
-package main
+package handler
 
 import (
 	"encoding/json"
@@ -17,8 +17,28 @@ type Title struct {
 	Poster     string  `json:"poster,omitempty"`
 }
 
+func SearchSeriesHandler(w http.ResponseWriter, r *http.Request) {
+	q := r.URL.Query().Get("q")
+	if q == "" {
+		http.Error(w, "Bad Request, missing query", http.StatusBadRequest)
+		return
+	}
+
+	results, err := searchSeries(q)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(results); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+}
+
 func searchSeries(query string) ([]Title, error) {
-	req, err := http.NewRequest("GET", fmt.Sprintf("https://tastedive.com/api/search?query=%s&take=9&page=1&types=urn:entity:artist,urn:entity:movie,urn:entity:tv_show", url.QueryEscape(query)), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("https://tastedive.com/api/search?query=%s&take=50&page=1&types=urn:entity:artist,urn:entity:movie,urn:entity:tv_show,urn:entity:videogame,urn:entity:person", url.QueryEscape(query)), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -117,9 +137,3 @@ def get_similar_series(id: str, type: str):
 
     return result
 */
-
-func main() {
-	r, _ := searchSeries("The Office")
-	b, _ := json.MarshalIndent(r, "", "  ")
-	fmt.Println(string(b))
-}
